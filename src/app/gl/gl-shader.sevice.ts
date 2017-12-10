@@ -80,4 +80,15 @@ export class GLShaderService {
 
         return prog;
     }
+
+    createShaderProgram(gl: WebGLRenderingContext, vertexShader: string, fragmentShader: string): WebGLProgram {
+      // compile text and validate
+      let vShader = this.createShader(gl, vertexShader, gl.VERTEX_SHADER);
+      let fShader = this.createShader(gl, fragmentShader, gl.FRAGMENT_SHADER);
+      
+      // link the shaders together as a program
+      let shaderProg = this.createProgram(gl, vShader, fShader, true);
+
+      return shaderProg;
+    }
 }
